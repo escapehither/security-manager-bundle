@@ -1,0 +1,49 @@
+user_index:
+    path:     /
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:User:index"
+        template: StarterKitSecurityManagerBundle:user:index.html.twig
+    methods:  GET
+
+user_show:
+    path:     /{id}/show
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:User:show"
+        delete_route: user_delete
+    methods:  GET
+
+user_new:
+    path:     /new
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:User:new"
+        redirect: user_index
+    methods:  [GET, POST]
+
+user_edit:
+    path:     /{id}/edit
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:User:edit"
+        template: StarterKitSecurityManagerBundle:user:edit.html.twig
+        form: StarterKit\SecurityManagerBundle\Form\EditUserType
+        redirect: user_index
+        delete_route: user_delete
+    methods:  [GET, POST]
+
+user_roles:
+    path:     /{id}/roles
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:User:edit"
+        template: StarterKitSecurityManagerBundle:user:roles.html.twig
+        form: StarterKit\SecurityManagerBundle\Form\EditUserRoles
+        redirect: user_index
+        delete_route: user_delete
+    methods:  [GET, POST]
+
+user_delete:
+    path:     /{id}/delete
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:User:delete"
+        redirect:
+            route: user_index
+        delete_route: user_delete
+    methods:  DELETE
