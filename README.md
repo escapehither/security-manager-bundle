@@ -1,6 +1,7 @@
 master-hotel
 ============
-
+Installation
+composer require escapehither/security-manager-bundle dev-master
 A Symfony project created on February 12, 2017, 11:03 pm.
 rm -rf var/cache/*
 rm -rf var/logs/*
