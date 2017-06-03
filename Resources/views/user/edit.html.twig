@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ form_start(edit_form) }}
+    {{ form_row(edit_form.username) }}
+    {{ form_row(edit_form.email) }}
+    {{ form_row(edit_form.plainPassword.first) }}
+    {{ form_row(edit_form.plainPassword.second) }}
+
+<button type="submit">save!</button>
+{{ form_end(edit_form) }}
+{% endblock %}

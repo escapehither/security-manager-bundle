@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ form_start(edit_form) }}
+    {#{{ dump(edit_form.roles.vars.choices) }}#}
+    {#{{ dump(edit_form.roles) }}#}
+   {#{{  dump(edit_form.roles[0])  }}#}
+    <table class="table">
+        <thead>
+        <tr>
+            <th></th>
+            <th>MANAGER</th>
+            <th>CREATE</th>
+            <th>SHOW</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
+            <th>UN DELETE</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set i = 0 %}
+            {% for roles in  edit_form.roles.vars.choices %}
+                {% set td = 0 %}
+            <tr>
+                <td>{{ roles.label}}</td>
+                {% for role in roles %}
+                    <td>{{ form_widget( edit_form.roles[i]) }}</td>
+                    {% set i = i + 1  %}
+                    {% set td = td +1 %}
+                {% endfor %}
+
+                {% if td < 6 %}
+                    {% set count = td %}
+                    {% for cont in td..5 %}
+                        <td></td>
+                    {% endfor %}
+                {% endif%}
+                        </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
+    {#{{ form_row(edit_form.roles) }}#}
+<button type="submit">save!</button>
+{{ form_end(edit_form) }}
+{% endblock %}

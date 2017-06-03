@@ -1,0 +1,27 @@
+security_login:
+    path:     /login
+    defaults: { _controller: StarterKitSecurityManagerBundle:Security:login }
+security_logout:
+    path:     /logout
+    defaults: { _controller: StarterKitSecurityManagerBundle:Security:logOut }
+user_registration:
+    path:     /register
+    defaults: { _controller: StarterKitSecurityManagerBundle:Registration:register }
+
+user_profile:
+    path:     /profile
+    defaults: { _controller: StarterKitSecurityManagerBundle:Profile:edit }
+
+api_token:
+    path:     /api/login
+    defaults:
+        _controller: "StarterKitSecurityManagerBundle:Token:newToken"
+    methods: [POST,GET]
+
+api_login_check:
+    path: /api/login_check
+
+
+starter_kit_manage_user:
+        resource: "@StarterKitSecurityManagerBundle/Resources/config/routing/user.yml"
+        prefix:   /admin/user
