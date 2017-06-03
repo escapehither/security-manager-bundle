@@ -40,7 +40,7 @@
         "behat/web-api-extension": "~1.0@dev"
     },
     "autoload": {
-        "psr-4": { "EscapeHither\\CrudManagerBundle\\": "" },
+        "psr-4": { "EscapeHither\\SecurityManagerBundle\\": "" },
         "exclude-from-classmap": [
             "/Tests/"
         ]
