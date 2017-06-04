@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class StarterKitSecurityManagerExtension extends Extension
+class EscapeHitherSecurityManagerExtension extends Extension
 {
     /**
      * {@inheritdoc}
@@ -22,7 +22,7 @@ class StarterKitSecurityManagerExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
         // add a new parameter
-        $container->setParameter('starter_kit.security.user.class', $config['user_provider']['class']);
+        $container->setParameter('escape_hither.security.user.class', $config['user_provider']['class']);
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 

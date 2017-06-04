@@ -1,8 +1,8 @@
 services:
-   starter_kit_security_manager.login_form_authenticator:
+   escapehither.security_login_form_authenticator:
        class: EscapeHither\SecurityManagerBundle\Security\LoginFormAuthenticator
        #autowire: true
-       arguments : ['@form.factory','@doctrine.orm.entity_manager','@router','@security.user_password_encoder.generic','%starter_kit.security.user.class%']
+       arguments : ['@form.factory','@doctrine.orm.entity_manager','@router','@security.user_password_encoder.generic','%escape_hither.security.user.class%']
 
    starter_kit_security_manager.doctrine.hash_password_listener:
           class: EscapeHither\SecurityManagerBundle\Doctrine\HashPasswordListener
@@ -10,12 +10,12 @@ services:
           tags:
               - { name: doctrine.event_subscriber }
 
-   starter_kit_security_manager.form.edit_roles:
+   escapehither.security_form.edit_roles:
             class: EscapeHither\SecurityManagerBundle\Form\EditUserRoles
             arguments: ['%security.role_hierarchy.roles%']
             tags:
                 - { name: form.type }
-   starter_kit_security_manager.jwt_token_authenticator:
+   escapehither.security_jwt_token_authenticator:
             class: EscapeHither\SecurityManagerBundle\Security\JwtTokenAuthenticator
             #autowire: true
-            arguments : ['@lexik_jwt_authentication.encoder','@doctrine.orm.entity_manager','@router','@security.user_password_encoder.generic','%starter_kit.security.user.class%']
+            arguments : ['@lexik_jwt_authentication.encoder','@doctrine.orm.entity_manager','@router','@security.user_password_encoder.generic','%escape_hither.security.user.class%']

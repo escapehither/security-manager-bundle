@@ -1,84 +1,131 @@
-master-hotel
-============
-Installation
-composer require escapehither/security-manager-bundle dev-master
-Sylius ElasticSearchBundle
-==========================
-Elastic search for Sylius.
-[![Build status on Linux](https://img.shields.io/travis/Lakion/SyliusElasticSearchBundle/master.svg)](http://travis-ci.org/Lakion/SyliusELasticSearchBundle)
+Escape Hither SecurityManagerBundle
+===============================
 
-## Usage
+Step 1: Download the Bundle
+---------------------------
+The Bundle is actually in a private Repository.
+In your Composer.json add:
+```json
+{
+  //....
+  "repositories": [{
+    "type": "composer",
+    "url": "https://packages.escapehither.com"
+  }]
 
-1. Install it:
+}
+```
+Open a command console, enter your project directory and execute the
+following command to download the latest stable version of this bundle:
 
-    ```bash
-    $ composer require lakion/sylius-elastic-search-bundle
-    ```
-2. Install elastic search server:
+```console
+$ composer require escapehither/security-manager-bundle dev-master
+```
 
-    ```bash
-    $ brew install elasticsearch@2.4
-    ```
+This command requires you to have Composer installed globally, as explained
+in the [installation chapter](https://getcomposer.org/doc/00-intro.md)
+of the Composer documentation.
 
-3. Run elastic search server:
+Step 2: Enable the Bundle
+-------------------------
 
-    ```bash
-    $ elasticsearch
-    ```
+Then, enable the bundle by adding it to the list of registered bundles
+in the `app/AppKernel.php` file of your project:
 
-4. Add this bundle to `AppKernel.php`:
+```php
+<?php
+// app/AppKernel.php
 
-    ```php
-    new \FOS\ElasticaBundle\FOSElasticaBundle(),
-    new \Lakion\SyliusElasticSearchBundle\LakionSyliusElasticSearchBundle(),
-    ```
+// ...
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
 
-5. Create/Setup database:
+             new EscapeHither\CrudManagerBundle\StarterKitCrudBundle(),
+             new EscapeHither\SecurityManagerBundle\StarterKitSecurityManagerBundle(),
+             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
+        );
 
-    ```bash
-    $ app/console do:da:cr
-    $ app/console do:sch:cr
-    $ app/console syl:fix:lo
-    ```
+        // ...
+    }
 
-6. Populate your elastic search server with command or your custom code:
-
-    ```bash
-    $ app/console fos:elastic:pop
-    ```
+    // ...
+}
+```
 
 7. Import config file in `app/config/config.yml` for default filter set configuration:
 
     ```yaml
     imports:
-       - { resource: "@LakionSyliusElasticSearchBundle/Resources/config/app/config.yml" }
+       - { resource: "@EscapeHitherSecurityManagerBundle/Resources/config/services.yml" }
+       - { resource: "@EscapeHitherSecurityManagerBundle/Resources/config/config.yml" }
     ```
 
 8. Import routing files in `app/config/routing.yml`:
 
     ```yaml
-    sylius_search:
-        resource: "@LakionSyliusElasticSearchBundle/Resources/config/routing.yml"
+    escape_hither_security_manager:
+        resource: "@EscapeHitherSecurityManagerBundle/Resources/config/routing.yml"
+        prefix:   /
     ```
 
 8. Configuration reference:
 
     ```yaml
-    lakion_sylius_elastic_search:
-        filter_sets:
-            mugs:
-                filters:
-                    product_options:
-                        type: option
-                        options:
-                            code: mug_type
-                    product_price:
-                        type: price
+    escape_hither_security_manager:
+        user_provider:
+            class : AppBundle\Entity\User
+    ```
+8. Import security files in `app/config/security.yml`:
+    ```yaml
+    providers:
+                our_users:
+                    entity: { class: AppBundle\Entity\User, property: email }
+    firewalls:
+    #........
+        login:
+                    pattern:  ^/api/login
+                    stateless: true
+                    anonymous: true
+                    form_login:
+                        check_path:               /api/login_check
+                        success_handler:          lexik_jwt_authentication.handler.authentication_success
+                        failure_handler:          lexik_jwt_authentication.handler.authentication_failure
+                        require_previous_session: false
+        api:
+                    pattern:   ^/api
+                    stateless: true
+                    guard:
+                        authenticators:
+                            - lexik_jwt_authentication.jwt_token_authenticator
+                            #- escapehither.security_jwt_token_authenticator #my authenticator
+        main:
+                    anonymous: ~
+                    # activate different ways to authenticate
+
+                    # http_basic: ~
+                    # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+                    # form_login: ~
+                    # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+                    guard:
+                        entry_point: escapehither.security_login_form_authenticator
+                        authenticators:
+                            - escapehither.security_login_form_authenticator
+                    logout:
+                        path: /logout
+    encoders:
+        EscapeHither\SecurityManagerBundle\Entity\UserAccountInterface: bcrypt
     ```
 
  Add encoder for jwt.
 mkdir var/jwt
 openssl genrsa -out var/jwt/private.pem -aes256 4096
 openssl rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem
-
 
