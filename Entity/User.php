@@ -1,10 +1,10 @@
 <?php
-namespace StarterKit\SecurityManagerBundle\Entity;
+namespace EscapeHither\SecurityManagerBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use StarterKit\CrudBundle\Entity\Resource as BaseResource;
+use EscapeHither\CrudManagerBundle\Entity\Resource as BaseResource;
 //use Doctrine\ORM\Mapping as ORM;
 
 /**

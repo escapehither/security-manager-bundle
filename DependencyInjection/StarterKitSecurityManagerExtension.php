@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\SecurityManagerBundle\DependencyInjection;
+namespace EscapeHither\SecurityManagerBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

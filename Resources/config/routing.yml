@@ -1,21 +1,21 @@
 security_login:
     path:     /login
-    defaults: { _controller: StarterKitSecurityManagerBundle:Security:login }
+    defaults: { _controller: EscapeHitherSecurityManagerBundle:Security:login }
 security_logout:
     path:     /logout
-    defaults: { _controller: StarterKitSecurityManagerBundle:Security:logOut }
+    defaults: { _controller: EscapeHitherSecurityManagerBundle:Security:logOut }
 user_registration:
     path:     /register
-    defaults: { _controller: StarterKitSecurityManagerBundle:Registration:register }
+    defaults: { _controller: EscapeHitherSecurityManagerBundle:Registration:register }
 
 user_profile:
     path:     /profile
-    defaults: { _controller: StarterKitSecurityManagerBundle:Profile:edit }
+    defaults: { _controller: EscapeHitherSecurityManagerBundle:Profile:edit }
 
 api_token:
     path:     /api/login
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:Token:newToken"
+        _controller: "EscapeHitherSecurityManagerBundle:Token:newToken"
     methods: [POST,GET]
 
 api_login_check:
@@ -23,5 +23,5 @@ api_login_check:
 
 
 starter_kit_manage_user:
-        resource: "@StarterKitSecurityManagerBundle/Resources/config/routing/user.yml"
+        resource: "@EscapeHitherSecurityManagerBundle/Resources/config/routing/user.yml"
         prefix:   /admin/user

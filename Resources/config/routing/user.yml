@@ -1,30 +1,30 @@
 user_index:
     path:     /
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:User:index"
-        template: StarterKitSecurityManagerBundle:user:index.html.twig
+        _controller: "EscapeHitherSecurityManagerBundle:User:index"
+        template: EscapeHitherSecurityManagerBundle:user:index.html.twig
     methods:  GET
 
 user_show:
     path:     /{id}/show
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:User:show"
+        _controller: "EscapeHitherSecurityManagerBundle:User:show"
         delete_route: user_delete
     methods:  GET
 
 user_new:
     path:     /new
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:User:new"
+        _controller: "EscapeHitherSecurityManagerBundle:User:new"
         redirect: user_index
     methods:  [GET, POST]
 
 user_edit:
     path:     /{id}/edit
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:User:edit"
-        template: StarterKitSecurityManagerBundle:user:edit.html.twig
-        form: StarterKit\SecurityManagerBundle\Form\EditUserType
+        _controller: "EscapeHitherSecurityManagerBundle:User:edit"
+        template: EscapeHitherSecurityManagerBundle:user:edit.html.twig
+        form: EscapeHither\SecurityManagerBundle\Form\EditUserType
         redirect: user_index
         delete_route: user_delete
     methods:  [GET, POST]
@@ -32,9 +32,9 @@ user_edit:
 user_roles:
     path:     /{id}/roles
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:User:edit"
-        template: StarterKitSecurityManagerBundle:user:roles.html.twig
-        form: StarterKit\SecurityManagerBundle\Form\EditUserRoles
+        _controller: "EscapeHitherSecurityManagerBundle:User:edit"
+        template: EscapeHitherSecurityManagerBundle:user:roles.html.twig
+        form: EscapeHither\SecurityManagerBundle\Form\EditUserRoles
         redirect: user_index
         delete_route: user_delete
     methods:  [GET, POST]
@@ -42,7 +42,7 @@ user_roles:
 user_delete:
     path:     /{id}/delete
     defaults:
-        _controller: "StarterKitSecurityManagerBundle:User:delete"
+        _controller: "EscapeHitherSecurityManagerBundle:User:delete"
         redirect:
             route: user_index
         delete_route: user_delete

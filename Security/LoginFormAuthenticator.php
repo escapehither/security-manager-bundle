@@ -8,7 +8,7 @@
  * Date: 09/03/17
  * Time: 21:15
  */
-namespace StarterKit\SecurityManagerBundle\Security;
+namespace EscapeHither\SecurityManagerBundle\Security;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
-use StarterKit\SecurityManagerBundle\Form\LoginForm;
+use EscapeHither\SecurityManagerBundle\Form\LoginForm;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator

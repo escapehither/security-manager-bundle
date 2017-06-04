@@ -8,8 +8,8 @@
  * Time: 16:27
  */
 
-namespace StarterKit\SecurityManagerBundle\Controller;
-use StarterKit\CrudBundle\Controller\CrudController as BaseController;
+namespace EscapeHither\SecurityManagerBundle\Controller;
+use EscapeHither\CrudManagerBundle\Controller\CrudController as BaseController;
 
 class UserController extends BaseController {
 

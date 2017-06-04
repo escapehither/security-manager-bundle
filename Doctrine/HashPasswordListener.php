@@ -8,11 +8,11 @@
  * Date: 12/03/17
  * Time: 00:40
  */
-namespace StarterKit\SecurityManagerBundle\Doctrine;
+namespace EscapeHither\SecurityManagerBundle\Doctrine;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
-use StarterKit\SecurityManagerBundle\Entity\User;
-use StarterKit\SecurityManagerBundle\Entity\UserAccountInterface;
+use EscapeHither\SecurityManagerBundle\Entity\User;
+use EscapeHither\SecurityManagerBundle\Entity\UserAccountInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 
 

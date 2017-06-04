@@ -8,7 +8,7 @@
  * Date: 09/03/17
  * Time: 21:15
  */
-namespace StarterKit\SecurityManagerBundle\Security;
+namespace EscapeHither\SecurityManagerBundle\Security;
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Request;

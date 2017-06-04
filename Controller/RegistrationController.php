@@ -1,12 +1,12 @@
 <?php
 
-namespace StarterKit\SecurityManagerBundle\Controller;
+namespace EscapeHither\SecurityManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use StarterKit\SecurityManagerBundle\Entity\User;
-use StarterKit\SecurityManagerBundle\Form\UserType;
-use StarterKit\SecurityManagerBundle\Form\UserRegistrationType;
-use StarterKit\SecurityManagerBundle\Form\LoginForm;
+use EscapeHither\SecurityManagerBundle\Entity\User;
+use EscapeHither\SecurityManagerBundle\Form\UserType;
+use EscapeHither\SecurityManagerBundle\Form\UserRegistrationType;
+use EscapeHither\SecurityManagerBundle\Form\LoginForm;
 use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends Controller
@@ -40,7 +40,7 @@ class RegistrationController extends Controller
             return $this->redirectToRoute('homepage');
         }
         return $this->render(
-            'StarterKitSecurityManagerBundle:registration:register.html.twig',
+            'EscapeHitherSecurityManagerBundle:registration:register.html.twig',
             array('form' => $form->createView())
         );
     }

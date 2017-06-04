@@ -1,6 +1,6 @@
 <?php
 
-namespace StarterKit\SecurityManagerBundle\Tests\Controller;
+namespace EscapeHither\SecurityManagerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace StarterKit\SecurityManagerBundle\Controller;
+namespace EscapeHither\SecurityManagerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use StarterKit\SecurityManagerBundle\Form\EditUserType;
+use EscapeHither\SecurityManagerBundle\Form\EditUserType;
 use Symfony\Component\HttpFoundation\Request;
 class ProfileController extends Controller
 {
@@ -34,6 +34,6 @@ class ProfileController extends Controller
             // add a confirmation route for success.
             return $this->redirectToRoute('homepage');
         }
-        return $this->render('StarterKitSecurityManagerBundle:profile:edit.html.twig', array('edit_form' => $edit_form->createView()));
+        return $this->render('EscapeHitherSecurityManagerBundle:profile:edit.html.twig', array('edit_form' => $edit_form->createView()));
     }
 }

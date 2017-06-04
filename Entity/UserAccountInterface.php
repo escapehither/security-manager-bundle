@@ -8,7 +8,7 @@
  * Time: 22:09
  */
 
-namespace StarterKit\SecurityManagerBundle\Entity;
+namespace EscapeHither\SecurityManagerBundle\Entity;
 
 
 interface UserAccountInterface {

@@ -8,12 +8,12 @@
  * Time: 23:30
  */
 
-namespace StarterKit\SecurityManagerBundle\Controller;
+namespace EscapeHither\SecurityManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use StarterKit\SecurityManagerBundle\Entity\User;
-use StarterKit\SecurityManagerBundle\Form\UserType;
-use StarterKit\SecurityManagerBundle\Form\LoginForm;
+use EscapeHither\SecurityManagerBundle\Entity\User;
+use EscapeHither\SecurityManagerBundle\Form\UserType;
+use EscapeHither\SecurityManagerBundle\Form\LoginForm;
 use Symfony\Component\HttpFoundation\Request;
 class SecurityController extends Controller{
     /**
@@ -30,7 +30,7 @@ class SecurityController extends Controller{
         $lastUsername = $authenticationUtils->getLastUsername();
         $form = $this->createForm(LoginForm::class, ['_username'=>$lastUsername]);
 
-        return $this->render('StarterKitSecurityManagerBundle:security:login.html.twig', array(
+        return $this->render('EscapeHitherSecurityManagerBundle:security:login.html.twig', array(
             'form' => $form->createView(),
             'error'=> $error,
         ));

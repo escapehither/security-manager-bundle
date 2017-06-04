@@ -8,7 +8,7 @@
  * Time: 23:06
  */
 
-namespace StarterKit\SecurityManagerBundle\Controller;
+namespace EscapeHither\SecurityManagerBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
