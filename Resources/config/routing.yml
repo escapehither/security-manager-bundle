@@ -1,27 +1,27 @@
-security_login:
+escape_hither_security_login:
     path:     /login
     defaults: { _controller: EscapeHitherSecurityManagerBundle:Security:login }
-security_logout:
+escape_hither_security_logout:
     path:     /logout
     defaults: { _controller: EscapeHitherSecurityManagerBundle:Security:logOut }
-user_registration:
+escape_hither_user_registration:
     path:     /register
     defaults: { _controller: EscapeHitherSecurityManagerBundle:Registration:register }
 
-user_profile:
+escape_hither_user_profile:
     path:     /profile
     defaults: { _controller: EscapeHitherSecurityManagerBundle:Profile:edit }
 
-api_token:
+escape_hither_api_token:
     path:     /api/login
     defaults:
         _controller: "EscapeHitherSecurityManagerBundle:Token:newToken"
     methods: [POST,GET]
 
-api_login_check:
+escape_hither_api_login_check:
     path: /api/login_check
 
 
-starter_kit_manage_user:
+escape_hither_manage_user:
         resource: "@EscapeHitherSecurityManagerBundle/Resources/config/routing/user.yml"
         prefix:   /admin/user
