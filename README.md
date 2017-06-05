@@ -120,6 +120,16 @@ Step 4: Import and define configuration
                 form: EscapeHither\SecurityManagerBundle\Form\UserType
                 repository: AppBundle\Repository\UserRepository
     ```
+
+ Import user routing file in `app/config/routing.yml` :
+ Change administration to your secure area.
+    ```yaml
+    escape_hither_manage_user:
+            resource: "@EscapeHitherSecurityManagerBundle/Resources/config/routing/user.yml"
+            prefix:   /administration/user
+    ```
+
+
 2. Import routing files in `app/config/routing.yml`:
 
     ```yaml
