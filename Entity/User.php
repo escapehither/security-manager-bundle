@@ -146,6 +146,14 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
         $this->roles = $roles;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getUsername();
+    }
+
 
 
 

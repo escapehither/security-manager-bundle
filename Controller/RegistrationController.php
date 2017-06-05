@@ -3,10 +3,8 @@
 namespace EscapeHither\SecurityManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use EscapeHither\SecurityManagerBundle\Entity\User;
-use EscapeHither\SecurityManagerBundle\Form\UserType;
 use EscapeHither\SecurityManagerBundle\Form\UserRegistrationType;
-use EscapeHither\SecurityManagerBundle\Form\LoginForm;
+
 use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends Controller
@@ -17,7 +15,10 @@ class RegistrationController extends Controller
     public function registerAction(Request $request)
     {
         // 1) build the form
-        $user = new User();
+        //TODO add a factory to create user.
+        $user_provider_class = $this->getParameter('escape_hither.security.user.class');
+        $user = new $user_provider_class();
+        // TODO define parameter for user registration type.
         $form = $this->createForm(UserRegistrationType::class, $user);
 
         // 2) handle the submit (will only happen on POST)
@@ -33,11 +34,15 @@ class RegistrationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
+            
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
             // add a confirmation route for success.
-            return $this->redirectToRoute('homepage');
+            $this->addFlash(
+              'notice',
+              'Your are register!'
+            );
+            return $this->redirectToRoute('escape_hither_security_login');
         }
         return $this->render(
             'EscapeHitherSecurityManagerBundle:registration:register.html.twig',

@@ -11,10 +11,8 @@
 namespace EscapeHither\SecurityManagerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use EscapeHither\SecurityManagerBundle\Entity\User;
-use EscapeHither\SecurityManagerBundle\Form\UserType;
 use EscapeHither\SecurityManagerBundle\Form\LoginForm;
-use Symfony\Component\HttpFoundation\Request;
+
 class SecurityController extends Controller{
     /**
      * @Route("/login", name="security_login")

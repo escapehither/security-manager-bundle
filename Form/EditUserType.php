@@ -40,6 +40,6 @@ class EditUserType extends AbstractType
 
     public function getName()
     {
-        return 'starter_kit_security_manager_bundle_user_type';
+        return 'escape_hither_security_manager_bundle_user_type';
     }
 }
