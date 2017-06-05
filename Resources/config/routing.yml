@@ -21,7 +21,3 @@ escape_hither_api_token:
 escape_hither_api_login_check:
     path: /api/login_check
 
-
-escape_hither_manage_user:
-        resource: "@EscapeHitherSecurityManagerBundle/Resources/config/routing/user.yml"
-        prefix:   /admin/user
