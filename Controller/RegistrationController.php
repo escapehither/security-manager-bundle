@@ -34,7 +34,7 @@ class RegistrationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-            
+
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
             // add a confirmation route for success.
