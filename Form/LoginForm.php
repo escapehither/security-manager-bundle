@@ -17,5 +17,10 @@ class LoginForm extends AbstractType
         ;
 
     }
+    public function getBlockPrefix()
+    {
+        return null;
+    }
+
     
 }

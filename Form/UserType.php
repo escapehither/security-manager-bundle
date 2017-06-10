@@ -32,7 +32,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => User::class,
+            //'data_class' => User::class,
             'validation_groups' => ['Default', 'Registration'],
         ));
 

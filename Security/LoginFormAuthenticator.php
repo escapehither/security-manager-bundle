@@ -21,7 +21,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use EscapeHither\SecurityManagerBundle\Form\LoginForm;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
@@ -82,10 +84,24 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         return $this->router->generate('escape_hither_security_login');
     }
-
-    protected function getDefaultSuccessRedirectUrl()
+  
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        return $this->router->generate('homepage');
+        // on success, let the request continue
+
+        $url = '/';
+        if ($request->getSession() instanceof SessionInterface) {
+            $attributes = $request->getSession()->all();
+            if(!empty($attributes['_security.main.target_path'])){
+                if($attributes['_security.main.target_path'] != $this->router->generate('escape_hither_security_login')){
+                    $url = $attributes['_security.main.target_path'];
+                }
+
+            }
+        }
+
+        return new RedirectResponse($url);
+
     }
 
 
