@@ -89,7 +89,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     {
         // on success, let the request continue
 
-        $url = '/';
+        //$url = '/';
+        $home_name =$this->router->match('/');
+        $url = $this->router->generate($home_name['_route']);
+
         if ($request->getSession() instanceof SessionInterface) {
             $attributes = $request->getSession()->all();
             if(!empty($attributes['_security.main.target_path'])){
