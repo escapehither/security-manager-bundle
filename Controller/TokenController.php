@@ -20,11 +20,12 @@ class TokenController extends Controller
 {
     public function newTokenAction(Request $request)
     {
-        $data['user'] = $request->getUser();
-        $data['password'] = $request->getPassword();
-        //$data['user'] = 'user@example.com';
-        //$data['password']= 'password';
-        $userClass = $this->getParameter('starter_kit.security.user.class');
+        //$data['user'] = $request->getUser();
+        //$data['password'] = $request->getPassword();
+        $data['user'] = 'admin@example.com';
+        $data['password']= 'admin';
+        return new JsonResponse($data);
+        $userClass = $this->getParameter('escape_hither.security.user.class');
         $user = $this->getDoctrine()
           ->getRepository($userClass)
           ->findOneBy(['email' => $data['user']]);
