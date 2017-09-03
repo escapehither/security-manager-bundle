@@ -16,7 +16,8 @@ escape_hither_api_token:
     path:     /api/login
     defaults:
         _controller: "EscapeHitherSecurityManagerBundle:Token:newToken"
-    methods: [POST,GET]
+    methods: [POST]
+    #methods: [POST,GET]
 
 escape_hither_api_login_check:
     path: /api/login_check
