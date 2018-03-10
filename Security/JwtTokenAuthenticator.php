@@ -17,16 +17,18 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Lexik\Bundle\JWTAuthenticationBundle\TokenExtractor\AuthorizationHeaderTokenExtractor;
 use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTDecodeFailureException;
 
+/**
+ * Class JwtTokenAuthenticator
+ * @package EscapeHither\SecurityManagerBundle\Security
+ */
 class JwtTokenAuthenticator extends AbstractGuardAuthenticator
 {
 
@@ -45,7 +47,10 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
         $this->class = $class;
     }
 
-
+    /**
+     * @param Request $request
+     * @return array|bool|false|string|void
+     */
     public function getCredentials(Request $request)
     {
         $extractor = new AuthorizationHeaderTokenExtractor(
@@ -60,6 +65,11 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
         return $token;
     }
 
+    /**
+     * @param mixed $credentials
+     * @param UserProviderInterface $userProvider
+     * @return null|object
+     */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
 
@@ -81,6 +91,11 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
 
     }
 
+    /**
+     * @param mixed $credentials
+     * @param UserInterface $user
+     * @return bool
+     */
     public function checkCredentials($credentials, UserInterface $user)
     {
         return true;
@@ -92,6 +107,7 @@ class JwtTokenAuthenticator extends AbstractGuardAuthenticator
         }
         return false;*/
     }
+
 
     public function onAuthenticationFailure(
       Request $request,
