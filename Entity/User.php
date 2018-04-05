@@ -22,7 +22,7 @@ use EscapeHither\CrudManagerBundle\Entity\Resource as BaseResource;
  */
 class User extends BaseResource implements UserInterface, UserAccountInterface
 {
-
+    //TODO implements base user interface instead. with all my methods
     /**
      * @Assert\NotBlank()
      * @Assert\Email()
@@ -60,11 +60,17 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
 
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->email;
     }
 
+    /**
+     * @return array|json_array
+     */
     public function getRoles()
     {
         $roles = $this->roles;
@@ -75,6 +81,9 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
         return $roles;
     }
 
+    /**
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
@@ -85,12 +94,18 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
     {
         // TODO: Implement getSalt() method.
     }
+
+    /**
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
-
+    /**
+     * @return void
+     */
     public function eraseCredentials()
     {
         $this->plainPassword = null;
@@ -102,7 +117,7 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
     }
 
     /**
-     * @param mixed $username
+     * @param string $username
      */
     public function setUsername($username) {
         $this->username = $username;
@@ -110,7 +125,7 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
 
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
     public function setEmail($email)
     {
@@ -118,7 +133,7 @@ class User extends BaseResource implements UserInterface, UserAccountInterface
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      */
     public function setPassword($password) {
         $this->password = $password;

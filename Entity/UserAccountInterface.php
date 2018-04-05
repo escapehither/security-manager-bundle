@@ -9,8 +9,12 @@
  */
 
 namespace EscapeHither\SecurityManagerBundle\Entity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-
-interface UserAccountInterface {
+/**
+ * Interface UserAccountInterface
+ * @package EscapeHither\SecurityManagerBundle\Entity
+ */
+interface UserAccountInterface extends UserInterface{
 
 }
