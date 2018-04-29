@@ -25,6 +25,9 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+ * The login form Authenticator
+ */
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 {
     private $formFactory;
@@ -33,7 +36,16 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     private $passWordEncoder;
     private $class;
 
-    public function __construct(FormFactoryInterface $formFactory , EntityManager $em, RouterInterface $router,UserPasswordEncoder $passWordEncoder,$class)
+    /**
+     * The Login form Authenticathor
+     *
+     * @param FormFactoryInterface $formFactory     The for factory
+     * @param EntityManager        $em              The entity manager
+     * @param RouterInterface      $router          The router
+     * @param UserPasswordEncoder  $passWordEncoder The Password encoder
+     * @param string               $class           The user class
+     */
+    public function __construct(FormFactoryInterface $formFactory, EntityManager $em, RouterInterface $router, UserPasswordEncoder $passWordEncoder, $class)
     {
         $this->formFactory = $formFactory;
         $this->em = $em;
@@ -42,14 +54,29 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         $this->class = $class;
     }
 
+    /**
+     * Called on every request to decide if this authenticator should be
+     * used for the request. Returning false will cause this authenticator
+     * to be skipped.
+     *
+     * @param Request $request The request
+     *
+     * @return bool
+     */
+    public function supports(Request $request)
+    {
+        $isLoginSubmit = '/login' === $request->getPathInfo()  && $request->isMethod('POST');
+        if (!$isLoginSubmit) {
+            // skip authentication
+            return false;
+        }
+
+        return true;
+    }
+
     public function getCredentials(Request $request)
     {
 
-        $isLoginSubmit =$request->getPathInfo() =='/login' && $request->isMethod('POST');
-        if (!$isLoginSubmit) {
-            // skip authentication
-            return;
-        }
         $form = $this->formFactory->create(LoginForm::class);
         $form->handleRequest($request);
 
@@ -60,12 +87,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             Security::LAST_USERNAME,
             $data['_username']
         );
+
         return $data;
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $username = $credentials['_username'];
+
         return $this->em->getRepository($this->class)
           ->findOneBy(['email' => $username]);
     }
@@ -73,10 +102,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     public function checkCredentials($credentials, UserInterface $user)
     {
         $password = $credentials['_password'];
-        if ($this->passWordEncoder->isPasswordValid($user, $password)) {
 
+        if ($this->passWordEncoder->isPasswordValid($user, $password)) {
             return true;
         }
+
         return false;
     }
 
